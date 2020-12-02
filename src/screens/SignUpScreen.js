@@ -1,4 +1,5 @@
 import { StatusBar } from "expo-status-bar";
+import {Platform} from "react-native";
 import React, {useState} from "react";
 import styled from "styled-components";
 import Text from '../components/Text'
@@ -11,18 +12,61 @@ export default SignUpScreen = ({navigation}) => {
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
     const [loading, setLoading] = useState(false);
-    
+    const [profilePhoto, setProfilePhoto] = useState();
+
+    const getPermission = async () => {
+        if(Platform.OS !== "web"){
+            const {status} = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+
+            return status;
+        }
+    };
+
+    {/*Profile Photo */}
+
+    const pickImage = async () => {
+        try{
+            let result = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                allowsEditing: true,
+                aspect: [1,1],
+                quality: 0.5
+            });
+
+            if (!result.cancelled){
+                setProfilePhoto(result.uri)
+            }
+        } catch(error){
+            console.log("Error @pickImage:", error)
+        }
+    }
+
+    const addProfilePhoto = async () => {
+        const status = await getPermission();
+        
+        if (status !== 'granted'){
+            alert("We need permission to access your Photos");
+            return;
+        }
+        pickImage();
+    };
+
   return (
     <Container>
       <Main>
           <Text title semi center>Sign Up for the App</Text>
       </Main>
 
-      <ProfilePhotoContainer>
-          <DefaultProfilePhoto>
-              <AntDesign name="plus" size={24} color="#ffffff" />
-          </DefaultProfilePhoto>
+      <ProfilePhotoContainer onPress={addProfilePhoto}>
+          {profilePhoto ? (
+              <ProfilePhoto source={{uri: profilePhoto}} />
+          ): (
+            <DefaultProfilePhoto>
+            <AntDesign name="plus" size={24} color="#ffffff" />
+        </DefaultProfilePhoto>
+          )}
       </ProfilePhotoContainer>
+
       <Auth>
           <AuthContainer>
             <AuthTitle> Username </AuthTitle>
@@ -158,6 +202,10 @@ const DefaultProfilePhoto = styled.View`
     align-items: center;
     justify-content: center;
     flex: 1;
+`;
+
+const ProfilePhoto = styled.Image`
+    flex: 1,
 `;
 
 //const StatusBar = styled.StatusBar``;
