@@ -1,9 +1,13 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import Text from '../components/Text'
 
 export default SignInScreen = () => {
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+    const [loading, setLoading] = useState(false);
+    
   return (
     <Container>
       <Main>
@@ -12,9 +16,27 @@ export default SignInScreen = () => {
       <Auth>
           <AuthContainer>
             <AuthTitle> Email Address </AuthTitle>
-            <AuthField  autoCapitalize="none" autoCompleteType="email" autoCorrect={false} autoFocus={true} keyboardType="email-address"/>
+            <AuthField  autoCapitalize="none"
+             autoCompleteType="email" 
+             autoCorrect={false} 
+             autoFocus={true} 
+             keyboardType="email-address"
+             onChangeText={email => setEmail(email.trim())}
+             value={email}
+             />
+
             <AuthTitle> Password </AuthTitle>
-            <AuthField  autoCapitalize="none" autoCompleteType="password" autoCorrect={false} autoFocus={true} secureTextEntry={true} />
+
+            <AuthField  
+            autoCapitalize="none" 
+            autoCompleteType="password" 
+            autoCorrect={false} 
+            autoFocus={true} 
+            secureTextEntry={true}
+            onChangeText={password => setPassword(password.trim())}
+            value={password}
+              />
+
           </AuthContainer>
       </Auth>
       <SignInContainer>
