@@ -7,7 +7,7 @@ import config from '../config/firebase'
 const FirebaseContext = createContext()
 
 if (!firebase.apps.length){
-    firebase.initializeApp(config)
+    firebase.initializeApp(config);
 }
 
 const db = firebase.firestore()
@@ -15,5 +15,7 @@ const db = firebase.firestore()
 const Firebase = {}
 
 const FirebaseProvider = (props) => {
-return <FirebaseContext.Provider value={firebase}>{props.children}</FirebaseContext.Provider>
+return <FirebaseContext.Provider value={Firebase}>{props.children}</FirebaseContext.Provider>
 }
+
+export {FirebaseContext, FirebaseProvider}
