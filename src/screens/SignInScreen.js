@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import Text from '../components/Text'
 
-export default SignInScreen = () => {
+export default SignInScreen = ({navigation}) => {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [loading, setLoading] = useState(false);
@@ -31,7 +31,6 @@ export default SignInScreen = () => {
             autoCapitalize="none" 
             autoCompleteType="password" 
             autoCorrect={false} 
-            autoFocus={true} 
             secureTextEntry={true}
             onChangeText={password => setPassword(password.trim())}
             value={password}
@@ -39,10 +38,14 @@ export default SignInScreen = () => {
 
           </AuthContainer>
       </Auth>
-      <SignInContainer>
+      <SignInContainer disabled={loading}>
+        {loading ? (
+          <Loading />
+        ) : (
           <Text bold center color="#fff">Sign In</Text>
+        )}
       </SignInContainer>
-      <SignUp>
+      <SignUp onPress={() => navigation.navigate("SignUp")} >
           <Text small center >New to the App? <Text bold color="#8022d9">Sign Up</Text></Text>
       </SignUp>
       <HeaderGraphic>
@@ -120,5 +123,10 @@ const SignInContainer = styled.TouchableOpacity`
 const SignUp = styled.TouchableOpacity`
     margin-top: 16px;
 `;
+
+const Loading = styled.ActivityIndicator.attrs(props => ({
+  color: "#ffffff",
+  size: "small",
+}))``;
 
 //const StatusBar = styled.StatusBar``;

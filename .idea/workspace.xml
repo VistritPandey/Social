@@ -10,9 +10,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="80ea2583-0f7c-483b-ad0a-d69c6296d0e9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/screens/SignInScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SignInScreen.js" afterDir="false" />
-    </list>
+    <list default="true" id="80ea2583-0f7c-483b-ad0a-d69c6296d0e9" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,9 +62,9 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="110" y="120" width="1146" height="498" key="AVDManager" timestamp="1606902031363">
+    <state x="110" y="120" width="1146" height="498" key="AVDManager" timestamp="1606904745310">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="110" y="120" width="1146" height="498" key="AVDManager/0.0.1366.738@0.0.1366.738" timestamp="1606902031363" />
+    <state x="110" y="120" width="1146" height="498" key="AVDManager/0.0.1366.738@0.0.1366.738" timestamp="1606904745310" />
   </component>
 </project>
