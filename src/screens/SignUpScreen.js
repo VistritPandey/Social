@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Text from '../components/Text'
 import {AntDesign} from '@expo/vector-icons'
 import * as Permissions from 'expo-permissions'
+import * as ImagePicker from 'expo-image-picker'
 
 export default SignUpScreen = ({navigation}) => {
     const [email, setEmail] = useState();
