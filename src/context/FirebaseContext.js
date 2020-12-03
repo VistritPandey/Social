@@ -107,6 +107,10 @@ const Firebase = {
             console.log("Error @logout: ", error)
         }
         return false;
+    },
+
+    signIn: async (email, password) => {
+        return firebase.auth().signInWithEmailAndPassword(email, password);
     }
 };
 
