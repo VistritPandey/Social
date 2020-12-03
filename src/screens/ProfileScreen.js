@@ -8,6 +8,15 @@ export default ProfileScreen = () => {
     const [user, setUser] = useContext(UserContext)
     const firebase = useContext(FirebaseContext)
 
+
+    const LogOut = async () => {
+        const loggedOut = await firebase.logOut()
+
+        if (loggedOut) {
+            setUser( state => ({...state, isLoggedIn: false}))
+        }
+    }
+
     return (
         <Container>
             <ProfilePhotoContainer>
@@ -34,7 +43,7 @@ export default ProfileScreen = () => {
                     </StatContainer>
                 </StatsContainer>
 
-                <Logout>
+                <Logout onPress={LogOut}>
                     <Text medium bold color="red">Log Out</Text>
                 </Logout>
         </Container>

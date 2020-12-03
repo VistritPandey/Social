@@ -96,6 +96,17 @@ const Firebase = {
         } catch (error) {
             console.log("error @getUserInfo: ", error);
         }
+    },
+
+    logOut: async () => {
+        try {
+            await firebase.auth().signOut()
+
+            return true
+        } catch (error) {
+            console.log("Error @logout: ", error)
+        }
+        return false;
     }
 };
 
