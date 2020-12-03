@@ -1,11 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import {Platform} from "react-native";
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import styled from "styled-components";
 import Text from '../components/Text'
 import {AntDesign} from '@expo/vector-icons'
 import * as Permissions from 'expo-permissions'
 import * as ImagePicker from 'expo-image-picker'
+import {FirebaseContext} from '../context/FirebaseContext'
+import {UserContext} from '../context/UserContext'
 
 export default SignUpScreen = ({navigation}) => {
     const [email, setEmail] = useState();
@@ -13,6 +15,8 @@ export default SignUpScreen = ({navigation}) => {
     const [password, setPassword] = useState();
     const [loading, setLoading] = useState(false);
     const [profilePhoto, setProfilePhoto] = useState();
+    const firebase = useContext(FirebaseContext)
+    const [_, setUser] = useContext(UserContext)
 
     const getPermission = async () => {
         if(Platform.OS !== "web"){
@@ -36,10 +40,10 @@ export default SignUpScreen = ({navigation}) => {
             if (!result.cancelled){
                 setProfilePhoto(result.uri)
             }
-        } catch(error){
+        } catch (error){
             console.log("Error @pickImage:", error)
         }
-    }
+    };
 
     const addProfilePhoto = async () => {
         const status = await getPermission();
@@ -50,6 +54,24 @@ export default SignUpScreen = ({navigation}) => {
         }
         pickImage();
     };
+
+    const signUp  = async () => {
+      setLoading(true)
+
+      const user = {username, email, password, profilePhoto}
+
+      try{
+        const createdUser = await firebase.createUser(user)
+
+        setUser({...createdUser, isLoggedIn: true});
+
+
+      } catch (error) {
+        console.log("Error @signUp: ", error)
+      } finally {
+        setLoading(false)
+      }
+    }
 
   return (
     <Container>
@@ -97,7 +119,7 @@ export default SignUpScreen = ({navigation}) => {
 
           </AuthContainer>
       </Auth>
-      <SignUpContainer disabled={loading}>
+      <SignUpContainer onPress={signUp} disabled={loading}>
         {loading ? (
           <Loading />
         ) : (
