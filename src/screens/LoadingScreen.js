@@ -7,7 +7,11 @@ export default function LoadingScreen() {
     return (
         <Container>
             <Text title color="#ffffff">Noobie's App</Text>
-            <LottieView source={require("../../assets/favicon.png")} />
+            <LottieView 
+            source={require("../../assets/animation.json")} 
+            autoPlay 
+            loop 
+            style={{ width: "100%"}} />
         </Container>
     )
 }
