@@ -1,18 +1,20 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import styled from 'styled-components'
+import LottieView from 'lottie-react-native'
+import Text from '../components/Text'
 
 export default function LoadingScreen() {
     return (
-        <View style={styles.container}>
-            <Text>LOADING.....</Text>
-        </View>
+        <Container>
+            <Text title color="#ffffff">Noobie's App</Text>
+            <LottieView source={require("../../assets/favicon.png")} />
+        </Container>
     )
 }
 
-const styles  = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-});
+const Container = styled.View`
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    background-color: #222222;
+`;
