@@ -83,8 +83,21 @@ const Firebase = {
             xhr.open("GET",uri, true)
             xhr.send(null);
         })
+    },
+
+    getUserInfo:  async (uid) => {
+        try {
+            const user = await db.collection("users").doc(uid).get();
+
+            if (user.exists) {
+                return user.data();
+            }
+
+        } catch (error) {
+            console.log("error @getUserInfo: ", error);
+        }
     }
-}
+};
 
 const FirebaseProvider = (props) => {
 return <FirebaseContext.Provider value={Firebase}>{props.children}</FirebaseContext.Provider>
