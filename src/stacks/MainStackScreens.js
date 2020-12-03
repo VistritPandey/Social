@@ -24,6 +24,29 @@ export default MainStackScreens = () => {
     const screenOptions = (({route}) => ({
         tabBarIcon: ({focused}) => {
             let iconName = "ios-home"
+
+            switch(route.name) {
+                case "Home":
+                    iconName = "ios-home"
+                    break;
+                case "Message":
+                    iconName = "ios-chatboxes"
+                    break;
+                case "Notification":
+                    iconName = "ios-notifications"
+                    break;
+                case "Profile":
+                    iconName = "ios-person"
+                    break;
+                default :
+                    iconName = "ios-home"
+            }
+
+            if (route.name === "Post"){
+                return(
+                    <Ionicons name="ios-add-circle" size={62} color="tomato" style={{ shadowColor: "#23a8d9", shadowOffset: {width: 0, height: 10}, shadowRadius: 10, shadowOpacity: 0.3,}} />
+                )
+            }
             return <Ionicons name={iconName} size={24} color={focused ? "#ffffff" : "#666666"} />
         }
     }))
