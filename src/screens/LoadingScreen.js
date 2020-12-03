@@ -11,7 +11,7 @@ export default function LoadingScreen() {
     useEffect(() => {
         setTimeout(async () => {
             setUser((state) => ({ ...state, isLoggedIn: false}));
-        }, 1500)
+        }, 500)
     }, [])
 
     return (
