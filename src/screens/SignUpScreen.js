@@ -25,27 +25,23 @@ export default SignUpScreen = ({navigation}) => {
             return status;
         }
     };
-
-    {/*Profile Photo */}
-
     const pickImage = async () => {
-        try{
-            let result = await ImagePicker.launchImageLibraryAsync({
-                mediaTypes: ImagePicker.MediaTypeOptions.Images,
-                allowsEditing: true,
-                aspect: [1,1],
-                quality: 0.5
-            });
+      try{
+          let result = await ImagePicker.launchImageLibraryAsync({
+              mediaTypes: ImagePicker.MediaTypeOptions.Images,
+              allowsEditing: true,
+              aspect: [1,1],
+              quality: 0.5
+          });
 
-            if (!result.cancelled){
-                setProfilePhoto(result.uri)
-            }
-        } catch (error){
-            console.log("Error @pickImage:", error)
-        }
-    };
-
-    const addProfilePhoto = async () => {
+          if (!result.cancelled){
+              setProfilePhoto(result.uri)
+          }
+      } catch (error){
+          console.log("Error @pickImage:", error)
+      }
+  };
+  const addProfilePhoto = async () => {
         const status = await getPermission();
         
         if (status !== 'granted'){
