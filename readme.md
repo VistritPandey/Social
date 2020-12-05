@@ -4,5 +4,5 @@
 
 ![QR](QR.png)
 
-Web link for expo: https://expo.io/@vistrit/projects/vistrit-chat-app
+Web link for expo: https://expo.io/@vistrit/projects/social
 
