@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "Social App made using React Native, Post and feed section under construction........",
+    "githubUrl": "https://github.com/VistritPandey/Social"
   }
 }
